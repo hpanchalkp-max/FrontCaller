@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<title>Front Caller — AI Receptionist That Never Misses a Call</title>
+<meta name="description" content="Front Caller is an AI receptionist for local businesses. It answers calls 24/7, books appointments, captures leads and transfers priority callers — trained specifically for your business." />
+<meta property="og:title" content="Front Caller — AI Receptionist That Never Misses a Call" />
+<meta property="og:description" content="AI receptionist for local businesses. 24/7 call answering, bookings, lead capture and smart transfers." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
+        colors: {
+          brand: { DEFAULT: '#3B82F6', soft: '#EFF4FF', fg: '#ffffff' },
+          ink: '#0f172a',
+        },
+        boxShadow: {
+          card: '0 1px 2px 0 rgb(15 23 42 / 0.04), 0 2px 8px -4px rgb(15 23 42 / 0.06)',
+          elevated: '0 1px 2px 0 rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.08)',
+          brand: '0 10px 30px -10px rgba(59,130,246,0.45)',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color:#0f172a; background:#fff; }
+  h1,h2,h3,h4 { letter-spacing: -0.02em; }
+  .container-page { width:100%; max-width:80rem; margin-inline:auto; padding-inline:1.25rem; }
+  .text-balance { text-wrap: balance; }
+  .bg-grid-soft {
+    background-image:
+      linear-gradient(to right, rgba(15,23,42,.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,23,42,.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 75%);
+            mask-image: radial-gradient(ellipse at top, black 40%, transparent 75%);
+  }
+  .muted { color:#64748b; }
+  .border-soft { border-color:#e5e7eb; }
+  @keyframes pulseRing { 0%,100%{ transform:scale(1); opacity:.7 } 50%{ transform:scale(1.15); opacity:.2 } }
+  .pulse-ring { animation: pulseRing 2.4s ease-in-out infinite; }
+  @keyframes wave { 0%,100%{ height:6px } 50%{ height:26px } }
+  .wave-bar { animation: wave 1.4s ease-in-out infinite; }
+  @keyframes fadeUp { from{ opacity:0; transform:translateY(14px)} to{ opacity:1; transform:none } }
+  .reveal { opacity:0; }
+  .reveal.in { animation: fadeUp .6s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes progress { 0%{ width:10% } 50%{ width:80% } 100%{ width:40% } }
+  .progress-bar { animation: progress 3.2s ease-in-out infinite; }
+  [data-lucide] { width:1em; height:1em; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- Nav -->
+<header id="nav" class="sticky top-0 z-50 w-full border-b border-transparent bg-white/0 backdrop-blur-0 transition-all">
+  <nav class="container-page flex h-16 items-center justify-between">
+    <a href="#top" class="flex items-center gap-2">
+      <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center"><svg viewBox="0 0 120 120" class="h-full w-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="52" fill="none" stroke="#0F2338" stroke-width="8"/><rect x="33" y="27" width="15" height="66" rx="6" fill="#0F2338"/><rect x="33" y="27" width="45" height="14" rx="6" fill="#0F2338"/><rect x="33" y="53" width="35" height="14" rx="6" fill="#0EA5B0"/><circle cx="79" cy="60" r="7.5" fill="#0EA5B0"/></svg></span>
+      <span class="text-[15px] font-semibold tracking-tight">Front Caller</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-1">
+      <li><a href="#features" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">Features</a></li>
+      <li><a href="#how" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">How It Works</a></li>
+      <li><a href="#industries" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">Industries</a></li>
+      <li><a href="#integrations" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">Integrations</a></li>
+      <li><a href="#pricing" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">Pricing</a></li>
+      <li><a href="#faq" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">FAQ</a></li>
+      <li><a href="#contact" class="rounded-md px-3 py-2 text-sm muted hover:text-slate-900">Contact</a></li>
+    </ul>
+    <div class="hidden md:flex">
+      <a href="#contact" class="inline-flex h-9 items-center rounded-full bg-brand px-4 text-sm font-medium text-white shadow-brand hover:bg-blue-600 transition-colors">Book a Call</a>
+    </div>
+    <button id="menuBtn" aria-label="Open menu" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-soft"><i data-lucide="menu" class="h-4 w-4"></i></button>
+  </nav>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-soft bg-white">
+    <ul class="container-page flex flex-col py-3">
+      <li><a href="#features" class="block rounded-md px-2 py-3 text-sm">Features</a></li>
+      <li><a href="#how" class="block rounded-md px-2 py-3 text-sm">How It Works</a></li>
+      <li><a href="#industries" class="block rounded-md px-2 py-3 text-sm">Industries</a></li>
+      <li><a href="#integrations" class="block rounded-md px-2 py-3 text-sm">Integrations</a></li>
+      <li><a href="#pricing" class="block rounded-md px-2 py-3 text-sm">Pricing</a></li>
+      <li><a href="#faq" class="block rounded-md px-2 py-3 text-sm">FAQ</a></li>
+      <li><a href="#contact" class="block rounded-md px-2 py-3 text-sm">Contact</a></li>
+      <li class="pt-2"><a href="#contact" class="block w-full rounded-full bg-brand px-4 py-2 text-center text-sm font-medium text-white">Book a Call</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="relative overflow-hidden">
+  <div aria-hidden class="pointer-events-none absolute inset-0 -z-10 bg-grid-soft"></div>
+  <div class="container-page grid gap-14 pt-16 pb-20 md:grid-cols-2 md:gap-10 md:pt-24 md:pb-28 lg:gap-16">
+    <div class="max-w-xl">
+      <div class="reveal inline-flex items-center gap-2 rounded-full border border-soft bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">
+        <i data-lucide="sparkles" class="h-3.5 w-3.5 text-brand"></i> AI Receptionist for local businesses
+      </div>
+      <h1 class="reveal mt-5 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+        Every Call Answered. <span class="muted">Every Opportunity Captured.</span>
+      </h1>
+      <p class="reveal mt-5 text-balance text-base leading-relaxed muted sm:text-lg">
+        Front Caller is an AI receptionist that answers your business phone 24/7 — booking appointments, answering customer questions, capturing new leads, and transferring important calls with natural, human-like conversation.
+      </p>
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+        <a href="#demo" class="inline-flex h-12 items-center gap-2 rounded-full bg-brand px-6 text-[15px] font-medium text-white shadow-brand hover:bg-blue-600 transition-colors"><i data-lucide="phone" class="h-4 w-4"></i> Call Demo</a>
+        <a href="#contact" class="inline-flex h-12 items-center gap-2 rounded-full border border-soft bg-white px-6 text-[15px] hover:bg-slate-50 transition-colors">Book a Call <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+      <ul class="reveal mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-800">
+        <li class="inline-flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-brand"></i> Available 24/7</li>
+        <li class="inline-flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-brand"></i> Customized for Your Business</li>
+        <li class="inline-flex items-center gap-2"><i data-lucide="check" class="h-4 w-4 text-brand"></i> Human-like Conversations</li>
+      </ul>
+    </div>
+
+    <!-- Call visual -->
+    <div class="reveal md:pl-6">
+      <div class="relative">
+        <div aria-hidden class="absolute -inset-8 -z-10 rounded-[36px] opacity-70 blur-3xl" style="background:radial-gradient(60% 60% at 50% 40%, rgba(59,130,246,.22), transparent 70%);"></div>
+        <div class="relative overflow-hidden rounded-3xl border border-soft bg-white shadow-elevated">
+          <div class="flex items-center justify-between border-b border-soft px-5 py-3.5">
+            <div class="flex items-center gap-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-rose-300"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-amber-300"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+            </div>
+            <div class="text-[11px] font-medium tracking-wider muted">LIVE CALL · 00:42</div>
+          </div>
+          <div class="grid gap-6 p-6 sm:p-7">
+            <div class="flex items-center gap-4">
+              <div class="relative">
+                <span aria-hidden class="absolute inset-0 rounded-full bg-brand/25 pulse-ring"></span>
+                <div class="relative flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white shadow-brand"><i data-lucide="phone" class="h-5 w-5"></i></div>
+              </div>
+              <div class="min-w-0">
+                <div class="truncate text-sm font-medium">Incoming — (415) 555-0142</div>
+                <div class="text-xs muted">Answered by Front Caller · Northside Dental</div>
+              </div>
+              <div class="ml-auto hidden sm:inline-flex items-center gap-1.5 rounded-full border border-soft bg-slate-50 px-2.5 py-1 text-[11px] font-medium">
+                <span class="h-1.5 w-1.5 rounded-full bg-brand"></span> Speaking
+              </div>
+            </div>
+            <div id="waveform" class="flex h-10 items-end gap-1"></div>
+            <ol class="space-y-3 text-sm">
+              <li class="flex gap-3">
+                <span class="mt-0.5 shrink-0 rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider muted">Caller</span>
+                <p>Hi, do you have any openings for a cleaning next Tuesday afternoon?</p>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-0.5 shrink-0 rounded-md bg-brand/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand">AI</span>
+                <p>Absolutely — we have 2:15 or 3:30 with Dr. Chen. Which works better?</p>
+              </li>
+            </ol>
+            <div class="grid grid-cols-3 gap-2 border-t border-soft pt-4">
+              <div class="flex items-center gap-2 rounded-xl border border-soft bg-slate-50 px-2.5 py-2 text-xs"><i data-lucide="calendar-check" class="h-3.5 w-3.5 text-brand"></i><span class="truncate">Booking</span></div>
+              <div class="flex items-center gap-2 rounded-xl border border-soft bg-slate-50 px-2.5 py-2 text-xs"><i data-lucide="user-plus" class="h-3.5 w-3.5 text-brand"></i><span class="truncate">Lead saved</span></div>
+              <div class="flex items-center gap-2 rounded-xl border border-soft bg-slate-50 px-2.5 py-2 text-xs"><i data-lucide="phone-forwarded" class="h-3.5 w-3.5 text-brand"></i><span class="truncate">Ready to transfer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">Features</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Everything your receptionist does — automatically.</h2>
+      <p class="reveal mt-4 muted">A calm, capable front desk that never sleeps — trained on the way your business actually operates.</p>
+    </div>
+    <div id="featuresGrid" class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- How -->
+<section id="how" class="border-t border-soft bg-slate-50/60 py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">How it works</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Three elegant steps — from ring to resolved.</h2>
+    </div>
+    <ol id="howGrid" class="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-3"></ol>
+  </div>
+</section>
+
+<!-- Industries -->
+<section id="industries" class="py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">Industries</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Built for service businesses.</h2>
+      <p class="reveal mt-4 muted">Every Front Caller is customized specifically for the way your business operates.</p>
+    </div>
+    <div id="industriesGrid" class="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"></div>
+  </div>
+</section>
+
+<!-- Integrations -->
+<section id="integrations" class="border-t border-soft bg-slate-50/60 py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">Integrations</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Works with the tools you already use.</h2>
+      <p class="reveal mt-4 muted">Front Caller plugs into your existing calendar, scheduling and CRM — no new number, no rip-and-replace, no switching how customers reach you.</p>
+    </div>
+    <div id="integrationsGrid" class="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"></div>
+    <p class="reveal mt-8 text-center text-sm muted">Don't see your tool? <a href="#contact" class="font-medium text-brand hover:underline">Ask us</a> — most integrations can be added during setup.</p>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="border-t border-soft bg-slate-50/60 py-24 sm:py-28">
+  <div class="container-page grid gap-14 lg:grid-cols-2 lg:items-center">
+    <div>
+      <p class="reveal text-sm font-medium text-brand">Why Front Caller</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Why businesses choose Front Caller.</h2>
+      <ul id="benefitsList" class="reveal mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2"></ul>
+    </div>
+    <div class="reveal">
+      <div class="relative">
+        <div aria-hidden class="absolute -inset-8 -z-10 rounded-[32px] opacity-70 blur-3xl" style="background:radial-gradient(60% 60% at 50% 50%, rgba(59,130,246,.18), transparent 70%);"></div>
+        <div class="relative rounded-3xl border border-soft bg-white p-6 shadow-elevated sm:p-8">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center"><svg viewBox="0 0 120 120" class="h-full w-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="52" fill="none" stroke="#0F2338" stroke-width="8"/><rect x="33" y="27" width="15" height="66" rx="6" fill="#0F2338"/><rect x="33" y="27" width="45" height="14" rx="6" fill="#0F2338"/><rect x="33" y="53" width="35" height="14" rx="6" fill="#0EA5B0"/><circle cx="79" cy="60" r="7.5" fill="#0EA5B0"/></svg></div>
+              <div>
+                <div class="text-sm font-semibold">Front Caller</div>
+                <div class="text-xs muted">Handling 4 calls simultaneously</div>
+              </div>
+            </div>
+            <div class="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-soft bg-slate-50 px-2.5 py-1 text-[11px] font-medium"><span class="h-1.5 w-1.5 rounded-full bg-brand"></span> Live</div>
+          </div>
+          <ul id="concurrentList" class="mt-6 space-y-2.5"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">Pricing</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Simple, tailored pricing for your business.</h2>
+      <p class="reveal mt-4 muted">Every Front Caller is custom-built. We'll scope the right plan on a quick call — no seat charges, no per-minute surprises.</p>
+      <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="#contact" class="inline-flex h-12 items-center rounded-full bg-brand px-6 text-white shadow-brand hover:bg-blue-600 transition-colors">Get a Custom Quote</a>
+        <a href="#demo" class="inline-flex h-12 items-center gap-2 rounded-full border border-soft bg-white px-6 hover:bg-slate-50 transition-colors"><i data-lucide="phone" class="h-4 w-4"></i> Call Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="border-t border-soft py-24 sm:py-28">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="reveal text-sm font-medium text-brand">FAQ</p>
+      <h2 class="reveal mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Common questions.</h2>
+    </div>
+    <div id="faqList" class="reveal mx-auto mt-14 max-w-3xl divide-y divide-slate-200 rounded-2xl border border-soft bg-white shadow-card"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="py-24 sm:py-28">
+  <div class="container-page">
+    <div class="relative overflow-hidden rounded-3xl border border-soft bg-white px-6 py-16 shadow-elevated sm:px-10 sm:py-20">
+      <div aria-hidden class="pointer-events-none absolute inset-0 -z-10" style="background:radial-gradient(60% 60% at 50% 0%, rgba(59,130,246,.12), transparent 70%);"></div>
+      <div class="grid gap-14 lg:grid-cols-2 lg:items-center">
+        <div class="text-center lg:text-left">
+          <h2 class="reveal text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Ready to stop missing calls?</h2>
+          <p class="reveal mx-auto mt-4 max-w-2xl muted lg:mx-0">Give every caller a professional experience with an AI receptionist that's trained specifically for your business and works around the clock — on your existing number, with your data staying yours.</p>
+          <div id="demo" class="reveal mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <a href="tel:+15555550142" class="inline-flex h-12 items-center gap-2 rounded-full bg-brand px-6 text-[15px] text-white shadow-brand hover:bg-blue-600 transition-colors"><i data-lucide="phone" class="h-4 w-4"></i> Call Demo</a>
+            <a href="mailto:hello@frontcaller.com" class="inline-flex h-12 items-center gap-2 rounded-full border border-soft bg-white px-6 hover:bg-slate-50 transition-colors">Email Us <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+          </div>
+        </div>
+        <div class="reveal">
+          <form name="lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="leadForm" class="rounded-2xl border border-soft bg-slate-50/60 p-6 sm:p-7">
+            <input type="hidden" name="form-name" value="lead" />
+            <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <h3 class="text-lg font-semibold tracking-tight">Get a custom quote</h3>
+            <p class="mt-1 text-sm muted">Tell us about your business — we'll follow up within one business day.</p>
+            <div class="mt-5 grid gap-3.5 sm:grid-cols-2">
+              <input required name="name" placeholder="Full name" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
+              <input required name="business" placeholder="Business name" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
+              <input required type="tel" name="phone" placeholder="Phone number" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
+              <input required type="email" name="email" placeholder="Email address" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
+              <select name="industry" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand sm:col-span-2">
+                <option value="">Type of business (optional)</option>
+                <option>Dental / Medical Clinic</option>
+                <option>Law Firm</option>
+                <option>Salon / Spa</option>
+                <option>HVAC / Plumbing / Electrical</option>
+                <option>Accounting / Professional Services</option>
+                <option>Veterinary Clinic</option>
+                <option>Home Services</option>
+                <option>Other</option>
+              </select>
+              <textarea name="message" rows="3" placeholder="What would you like Front Caller to handle?" class="w-full rounded-lg border border-soft bg-white px-3.5 py-2.5 text-sm outline-none focus:border-brand sm:col-span-2"></textarea>
+            </div>
+            <button type="submit" class="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand px-6 text-[15px] font-medium text-white shadow-brand hover:bg-blue-600 transition-colors">Request My Quote <i data-lucide="arrow-right" class="h-4 w-4"></i></button>
+            <p id="leadFormNote" class="mt-3 text-center text-xs muted" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-soft bg-slate-50/60">
+  <div class="container-page flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center"><svg viewBox="0 0 120 120" class="h-full w-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="52" fill="none" stroke="#0F2338" stroke-width="8"/><rect x="33" y="27" width="15" height="66" rx="6" fill="#0F2338"/><rect x="33" y="27" width="45" height="14" rx="6" fill="#0F2338"/><rect x="33" y="53" width="35" height="14" rx="6" fill="#0EA5B0"/><circle cx="79" cy="60" r="7.5" fill="#0EA5B0"/></svg></span>
+      <span class="text-[15px] font-semibold tracking-tight">Front Caller</span>
+    </div>
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm muted">
+      <li><a href="#features" class="hover:text-slate-900">Features</a></li>
+      <li><a href="#industries" class="hover:text-slate-900">Industries</a></li>
+      <li><a href="#integrations" class="hover:text-slate-900">Integrations</a></li>
+      <li><a href="#pricing" class="hover:text-slate-900">Pricing</a></li>
+      <li><a href="#faq" class="hover:text-slate-900">FAQ</a></li>
+      <li><a href="#contact" class="hover:text-slate-900">Contact</a></li>
+    </ul>
+    <p class="text-xs muted">© <span id="yr"></span> Front Caller. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+  // Data
+  const FEATURES = [
+    { icon:'calendar-check', title:'Books Appointments', body:'Synchronizes with your booking process and schedules appointments instantly.' },
+    { icon:'message-circle-question', title:'Answers FAQs', body:'Provides accurate answers using information customized specifically for your business.' },
+    { icon:'phone-forwarded', title:'Transfers Important Calls', body:'Detects urgent callers and transfers them to the appropriate staff member.' },
+    { icon:'user-plus', title:'Captures Leads 24/7', body:'Collects customer details whenever your team is unavailable.' },
+    { icon:'sparkles', title:'Customized for Your Business', body:'Tailored to your services, pricing, hours, policies, FAQs, and preferred call flow.' },
+    { icon:'handshake', title:'Seamless Human + AI Experience', body:'Calls transition naturally between your staff and AI — callers get consistent, professional service.' },
+    { icon:'hash', title:'Keeps Your Existing Number', body:'No new number to advertise or update. Calls route through Front Caller, and you can turn it off in seconds.' },
+    { icon:'message-square-text', title:'Text Follow-Up Option', body:"Callers who'd rather text get a link mid-call and finish booking by message — in their preferred language." },
+    { icon:'layout-dashboard', title:'One Dashboard for Everything', body:'Every call, booking, and lead lands in a single view — no more piecing together voicemail and sticky notes.' },
+    { icon:'shield-check', title:'Own Your Customer Data', body:'Flat monthly rate, no commission on bookings, and the full customer list — name, number, and history — stays yours.' },
+    { icon:'rocket', title:'Done-For-You Setup', body:'Our team configures Front Caller around your services and policies. Most businesses are live within days, no contract required.' },
+    { icon:'plug-zap', title:'Works With Your Tools', body:'Connects to the calendar, scheduling, and CRM systems you already run your business on.' },
+  ];
+  const STEPS = [
+    { icon:'phone', title:'Customer calls your business', body:'Front Caller picks up instantly — no missed rings, no voicemails, no lost leads.' },
+    { icon:'waves', title:'Front Caller answers naturally', body:"Using your customized business knowledge, it understands the caller's intent and responds like a trained receptionist." },
+    { icon:'workflow', title:'Action taken — automatically', body:'Appointments are booked, questions answered, leads captured, or the call is transferred.' },
+  ];
+  const INDUSTRIES = [
+    ['stethoscope','Dental Clinics'],['heart-pulse','Medical Clinics'],['sparkle','Massage Therapy'],['heart-pulse','Chiropractors'],
+    ['scale','Law Firms'],['scissors','Salons'],['wrench','HVAC'],['wrench','Plumbing'],
+    ['zap','Electrical'],['calculator','Accountants'],['paw-print','Veterinary Clinics'],['home','Home Services'],
+  ];
+  const BENEFITS = [
+    ['phone','Never miss another customer call'],['clock','24/7 availability'],['waves','Human-like conversations'],
+    ['sparkles','Customized to your business'],['users','Handles multiple callers simultaneously'],['user-plus','Captures every lead'],
+    ['calendar-check','Books appointments automatically'],['shield-check','Reduces front desk workload'],
+    ['sparkle','Professional caller experience'],['handshake','Smooth handoff between AI and your team'],
+    ['hash','Keeps your existing phone number'],['ban','No commission on bookings — flat rate only'],
+  ];
+  const INTEGRATIONS = [
+    ['calendar-days','Google Calendar'],['calendar-clock','Outlook Calendar'],['calendar-check','Calendly'],
+    ['wrench','Jobber'],['home','Housecall Pro'],['clipboard-list','ServiceTitan'],
+    ['credit-card','Square'],['file-text','QuickBooks'],['building-2','Salesforce'],
+    ['message-circle','Slack'],['phone-call','Twilio'],['banknote','Stripe'],
+  ];
+  const FAQS = [
+    { q:'Do I need a new phone number?', a:'No. Front Caller works with the number you already advertise — a few settings on your existing line route calls through it, and you can turn that off any time.' },
+    { q:'Is there a long-term contract?', a:"No. Onboarding takes just days and there's no lock-in contract — you stay in control and can pause or cancel whenever you need to." },
+    { q:'Who owns the customer data collected?', a:"You do. Every name, number, and booking history captured belongs to your business — there's no commission on bookings and no third-party marketplace sitting between you and your customers." },
+    { q:'Does this replace my front desk staff?', a:"No — it backs them up. Front Caller picks up when your team is busy, after hours, or handling another customer, and hands calls to staff naturally whenever a human is needed." },
+    { q:'How is Front Caller trained on my business?', a:'You share your services, pricing, hours, policies, and FAQs once, and Front Caller learns them — the same way a new hire would shadow your best front-desk person.' },
+    { q:'What if a caller would rather text than talk?', a:'They can. Front Caller can send a text/chat link mid-call so customers finish booking by message, in their preferred language.' },
+  ];
+  const CALLS = [
+    { name:'Cleaning inquiry', tag:'Booking' },
+    { name:'New patient', tag:'Lead' },
+    { name:'After-hours caller', tag:'FAQ' },
+    { name:'Emergency', tag:'Transfer' },
+  ];
+
+  // Waveform bars
+  const wf = document.getElementById('waveform');
+  for (let i=0; i<40; i++) {
+    const s = document.createElement('span');
+    s.className = 'w-1 rounded-full bg-brand/70 wave-bar';
+    s.style.animationDelay = (i%10)*0.06 + 's';
+    s.style.animationDuration = (1.2 + (i%5)*0.15) + 's';
+    s.style.height = '6px';
+    wf.appendChild(s);
+  }
+
+  // Features
+  document.getElementById('featuresGrid').innerHTML = FEATURES.map(f => `
+    <article class="reveal group h-full rounded-2xl border border-soft bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated">
+      <div class="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand"><i data-lucide="${f.icon}" class="h-5 w-5"></i></div>
+      <h3 class="text-[17px] font-semibold tracking-tight">${f.title}</h3>
+      <p class="mt-2 text-sm leading-relaxed muted">${f.body}</p>
+    </article>`).join('');
+
+  // How
+  document.getElementById('howGrid').innerHTML = STEPS.map((s,i) => `
+    <li class="reveal relative h-full rounded-2xl border border-soft bg-white p-6 shadow-card">
+      <div class="flex items-center justify-between">
+        <span class="text-[13px] font-medium muted">Step ${String(i+1).padStart(2,'0')}</span>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand/10 text-brand"><i data-lucide="${s.icon}" class="h-4 w-4"></i></span>
+      </div>
+      <h3 class="mt-4 text-lg font-semibold tracking-tight">${s.title}</h3>
+      <p class="mt-2 text-sm leading-relaxed muted">${s.body}</p>
+    </li>`).join('');
+
+  // Industries
+  document.getElementById('industriesGrid').innerHTML = INDUSTRIES.map(([icon,name]) => `
+    <div class="reveal group flex items-center gap-3 rounded-xl border border-soft bg-white px-4 py-4 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-colors"><i data-lucide="${icon}" class="h-4 w-4"></i></span>
+      <span class="text-sm font-medium tracking-tight">${name}</span>
+    </div>`).join('');
+
+  // Benefits
+  document.getElementById('benefitsList').innerHTML = BENEFITS.map(([icon,text]) => `
+    <li class="flex items-start gap-3">
+      <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-brand/10 text-brand"><i data-lucide="${icon}" class="h-3.5 w-3.5"></i></span>
+      <span class="text-sm">${text}</span>
+    </li>`).join('');
+
+  // Integrations
+  document.getElementById('integrationsGrid').innerHTML = INTEGRATIONS.map(([icon,name]) => `
+    <div class="reveal group flex items-center gap-3 rounded-xl border border-soft bg-white px-4 py-4 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-colors"><i data-lucide="${icon}" class="h-4 w-4"></i></span>
+      <span class="text-sm font-medium tracking-tight">${name}</span>
+    </div>`).join('');
+
+  // FAQ
+  document.getElementById('faqList').innerHTML = FAQS.map((f,i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-panel-${i}">
+        <span class="text-[15px] font-medium tracking-tight">${f.q}</span>
+        <i data-lucide="chevron-down" class="faq-chevron h-4 w-4 shrink-0 muted transition-transform duration-300"></i>
+      </button>
+      <div id="faq-panel-${i}" class="faq-panel grid grid-rows-[0fr] transition-all duration-300 ease-in-out">
+        <div class="overflow-hidden"><p class="px-6 pb-5 text-sm leading-relaxed muted">${f.a}</p></div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.faq-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('grid-rows-[0fr]', open);
+      panel.classList.toggle('grid-rows-[1fr]', !open);
+      btn.querySelector('.faq-chevron').style.transform = open ? '' : 'rotate(180deg)';
+    });
+  });
+
+  // Concurrent calls
+  document.getElementById('concurrentList').innerHTML = CALLS.map((c,i) => `
+    <li class="flex items-center gap-3 rounded-xl border border-soft bg-slate-50 px-3.5 py-3">
+      <div class="relative">
+        <span class="absolute inset-0 rounded-full bg-brand/25 pulse-ring" style="animation-delay:${i*0.3}s"></span>
+        <span class="relative flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white"><i data-lucide="phone" class="h-3.5 w-3.5"></i></span>
+      </div>
+      <div class="min-w-0 flex-1">
+        <div class="truncate text-sm font-medium">${c.name}</div>
+        <div class="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200">
+          <div class="h-full rounded-full bg-brand progress-bar" style="animation-delay:${i*0.2}s;animation-duration:${3+i*0.3}s"></div>
+        </div>
+      </div>
+      <span class="shrink-0 rounded-full border border-soft bg-white px-2 py-0.5 text-[11px] font-medium">${c.tag}</span>
+    </li>`).join('');
+
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Icons
+  lucide.createIcons();
+
+  // Sticky nav shadow
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 8) nav.className = 'sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-xl transition-all';
+    else nav.className = 'sticky top-0 z-50 w-full border-b border-transparent bg-white/0 transition-all';
+  };
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+  // Mobile menu
+  const btn = document.getElementById('menuBtn'), mm = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => mm.classList.toggle('hidden'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin:'-60px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Lead form (Netlify Forms via AJAX)
+  const leadForm = document.getElementById('leadForm');
+  const leadFormNote = document.getElementById('leadFormNote');
+  leadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = leadForm.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    leadFormNote.textContent = 'Sending…';
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(leadForm)).toString(),
+      });
+      if (!res.ok) throw new Error('Request failed');
+      leadForm.reset();
+      leadForm.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+      leadFormNote.textContent = "Thanks — we'll be in touch within one business day.";
+    } catch (err) {
+      submitBtn.disabled = false;
+      leadFormNote.textContent = 'Something went wrong — please call or email us instead.';
+    }
+  });
+</script>
+</body>
+</html>
