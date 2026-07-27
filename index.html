@@ -308,7 +308,7 @@
             <div class="mt-5 grid gap-3.5 sm:grid-cols-2">
               <input required name="name" aria-label="Full name" autocomplete="name" maxlength="100" placeholder="Full name" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
               <input required name="business" aria-label="Business name" autocomplete="organization" maxlength="120" placeholder="Business name" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
-              <input required type="tel" name="phone" aria-label="Phone number" autocomplete="tel" maxlength="30" placeholder="Phone number" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
+              <input required type="tel" name="phone" aria-label="Phone number" autocomplete="tel" inputmode="tel" minlength="9" maxlength="30" placeholder="Phone number (minimum 9 digits)" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
               <input required type="email" name="email" aria-label="Email address" autocomplete="email" maxlength="254" placeholder="Email address" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand" />
               <select name="industry" aria-label="Type of business" class="h-11 w-full rounded-lg border border-soft bg-white px-3.5 text-sm outline-none focus:border-brand sm:col-span-2">
                 <option value="">Type of business (optional)</option>
@@ -530,8 +530,18 @@
   // Lead form (Vercel API)
   const leadForm = document.getElementById('leadForm');
   const leadFormNote = document.getElementById('leadFormNote');
+  const phoneInput = leadForm.querySelector('input[name="phone"]');
+  phoneInput.addEventListener('input', () => phoneInput.setCustomValidity(''));
+
   leadForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const phoneDigits = phoneInput.value.replace(/\D/g, '');
+    if (phoneDigits.length < 9 || phoneDigits.length > 15) {
+      phoneInput.setCustomValidity('Enter a valid phone number with 9 to 15 digits.');
+      phoneInput.reportValidity();
+      return;
+    }
+    phoneInput.setCustomValidity('');
     const submitBtn = leadForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     leadFormNote.textContent = 'Sending…';
@@ -549,7 +559,7 @@
       leadFormNote.textContent = "Thanks — we'll be in touch within one business day.";
     } catch (err) {
       submitBtn.disabled = false;
-      leadFormNote.textContent = 'Something went wrong — please call or email us instead.';
+      leadFormNote.textContent = err.message || 'Something went wrong — please call or email us instead.';
     }
   });
 </script>
