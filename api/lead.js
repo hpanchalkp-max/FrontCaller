@@ -37,12 +37,17 @@ export default async function handler(req, res) {
   const name = clean(body.name, 100);
   const business = clean(body.business, 120);
   const phone = clean(body.phone, 30);
+  const phoneDigits = phone.replace(/\D/g, '');
   const email = clean(body.email, 254);
   const industry = clean(body.industry, 100);
   const message = clean(body.message, 2000);
 
   if (!name || !business || !phone || !EMAIL_PATTERN.test(email)) {
     return res.status(400).json({ error: 'Please complete all required fields' });
+  }
+
+  if (phoneDigits.length < 9 || phoneDigits.length > 15) {
+    return res.status(400).json({ error: 'Enter a valid phone number with 9 to 15 digits' });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
