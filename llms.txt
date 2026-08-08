@@ -1,0 +1,24 @@
+# Front Caller
+
+> Front Caller is a customizable AI receptionist for service businesses.
+
+Canonical website: https://frontcaller.com/
+
+## What Front Caller does
+
+- Answers incoming business calls 24/7.
+- Handles common questions using business-approved information.
+- Captures lead names, contact details, needs, and context.
+- Books eligible appointments using a configured booking process.
+- Transfers priority callers according to defined escalation rules.
+- Works with an existing business phone number through call routing.
+
+## Who it serves
+
+Front Caller is designed for service businesses where phone calls drive appointments, estimates, customer service, or new business. Examples include dental and medical clinics, law firms, home services, salons and spas, HVAC and plumbing companies, and professional services.
+
+## Contact
+
+- Phone: +1 438 900 7142
+- Email: hello@frontcaller.com
+- Website: https://frontcaller.com/
