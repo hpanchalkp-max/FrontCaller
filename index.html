@@ -164,7 +164,7 @@
     .surface { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #f6f7f8; }
     .btn { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 10px; padding: 0 20px; font-size: 14px; font-weight: 700; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--blue); color: white; box-shadow: 0 10px 24px rgba(45,102,221,.24); }
+    .btn-primary { background: linear-gradient(180deg, #3975e6 0%, #2364dc 100%); color: white; box-shadow: 0 10px 24px rgba(45,102,221,.24); }
     .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 14px 28px rgba(45,102,221,.28); }
     .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.8); color: var(--navy); }
     .btn-secondary:hover { background: white; box-shadow: var(--shadow-sm); }
@@ -292,6 +292,8 @@
 
     footer { border-top: 1px solid var(--line); background: white; }
     .footer-inner { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 44px; padding: 34px 0; }
+    .footer-inner .brand-mark { width: 36px; height: 36px; }
+    .footer-inner .brand-name { font-size: 18px; }
     .footer-links { display: flex; flex-wrap: wrap; gap: 22px; color: var(--muted); font-size: 12px; font-weight: 600; }
     .copyright { color: var(--muted); font-size: 11px; }
     .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -373,7 +375,7 @@
         <span class="brand-name">Front Caller</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#how">How it works</a></li>
+        <li><a href="#how">How It Works</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -386,7 +388,7 @@
       </button>
     </nav>
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-      <a href="#how">How it works</a>
+      <a href="#how">How It Works</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
