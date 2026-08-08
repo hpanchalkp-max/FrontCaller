@@ -155,6 +155,7 @@
     h1, h2, h3, .brand-name { font-family: Manrope, Inter, sans-serif; }
     section { scroll-margin-top: 86px; }
     .wrap { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+    .top-shell { width: min(1536px, calc(100% - 96px)); margin-inline: auto; }
     .eyebrow { margin-bottom: 14px; color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .section-heading { max-width: 680px; margin-inline: auto; text-align: center; }
     .section-heading h2 { margin-bottom: 16px; color: var(--navy); font-size: clamp(32px, 4vw, 48px); line-height: 1.08; letter-spacing: -.045em; }
@@ -169,58 +170,55 @@
     .btn-secondary:hover { background: white; box-shadow: var(--shadow-sm); }
     .icon { width: 20px; height: 20px; }
 
-    .site-header { position: sticky; z-index: 50; top: 0; border-bottom: 1px solid rgba(223,228,234,.82); background: rgba(251,250,247,.86); backdrop-filter: blur(14px); }
-    .nav { display: flex; height: 74px; align-items: center; justify-content: space-between; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); }
-    .brand-mark { width: 36px; height: 36px; }
-    .brand-name { font-size: 18px; font-weight: 800; letter-spacing: -.035em; }
-    .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; margin: 0; padding: 0; }
-    .nav-links a { color: #4f5a6c; font-size: 13px; font-weight: 600; }
+    .site-header { position: sticky; z-index: 50; top: 0; border-bottom: 1px solid rgba(213,218,226,.9); background: rgba(253,252,249,.94); backdrop-filter: blur(14px); }
+    .nav { display: flex; height: 100px; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 15px; color: var(--navy); }
+    .brand-mark { width: 66px; height: 66px; }
+    .brand-name { font-size: 28px; font-weight: 700; letter-spacing: -.04em; }
+    .nav-links { display: flex; align-items: center; gap: clamp(36px, 4vw, 62px); list-style: none; margin: 0 22px 0 auto; padding: 0; }
+    .nav-links a { color: var(--navy); font-size: 18px; font-weight: 500; letter-spacing: -.025em; }
     .nav-links a:hover { color: var(--navy); }
-    .nav-actions { display: flex; align-items: center; gap: 22px; }
-    .nav-login { color: #4f5a6c; font-size: 13px; font-weight: 600; }
+    .nav-actions { display: flex; align-items: center; margin-left: 10px; }
+    .nav-demo { min-width: 188px; min-height: 56px; border: 1.5px solid var(--navy); border-radius: 9px; background: transparent; color: var(--navy); font-size: 18px; font-weight: 600; box-shadow: none; }
+    .nav-demo:hover { background: white; box-shadow: var(--shadow-sm); }
     .menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--navy); }
     .mobile-nav { display: none; border-top: 1px solid var(--line); background: var(--paper); padding: 12px 20px 20px; }
     .mobile-nav.open { display: grid; gap: 4px; }
     .mobile-nav a { padding: 11px 6px; font-size: 14px; font-weight: 600; }
 
-    .hero { position: relative; overflow: hidden; padding: 104px 0 98px; }
-    .hero::before { content: ""; position: absolute; z-index: -1; top: -240px; right: -260px; width: 680px; height: 680px; border-radius: 50%; background: radial-gradient(circle, rgba(45,102,221,.10), rgba(45,102,221,0) 68%); }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.03fr) minmax(430px, .97fr); align-items: center; gap: 72px; }
-    .hero-copy { max-width: 620px; }
-    .hero h1 { margin-bottom: 26px; color: var(--navy); font-size: clamp(48px, 6vw, 76px); line-height: 1.02; letter-spacing: -.063em; }
+    .hero { position: relative; min-height: calc(100vh - 100px); overflow: hidden; padding: clamp(94px, 7.6vw, 128px) 0 96px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(500px, 610px); align-items: start; justify-content: space-between; gap: clamp(56px, 6vw, 96px); }
+    .hero-copy { max-width: 720px; padding-top: 20px; }
+    .hero .eyebrow { margin-bottom: 28px; font-size: 18px; letter-spacing: .12em; }
+    .hero h1 { margin-bottom: 28px; color: var(--navy); font-size: clamp(58px, 4.55vw, 76px); line-height: 1.08; letter-spacing: -.055em; }
     .hero h1 span { display: block; }
-    .hero p { max-width: 590px; margin-bottom: 32px; color: #626e81; font-size: 17px; line-height: 1.72; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .micro-proof { display: flex; flex-wrap: wrap; gap: 18px; margin: 30px 0 0; padding: 0; color: #4f5a6c; font-size: 12px; font-weight: 600; list-style: none; }
-    .micro-proof li { display: inline-flex; align-items: center; gap: 7px; }
-    .check-dot { display: grid; width: 18px; height: 18px; place-items: center; border-radius: 50%; background: var(--soft-green); color: var(--green); }
+    .hero-copy > p:not(.eyebrow) { max-width: 600px; margin-bottom: 36px; color: #536075; font-size: clamp(18px, 1.4vw, 24px); line-height: 1.56; letter-spacing: -.02em; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 26px; }
+    .hero-actions .btn { min-width: 256px; min-height: 68px; border-radius: 8px; padding: 0 28px; font-size: 20px; font-weight: 500; }
+    .hero-actions .btn-secondary { border: 1.5px solid var(--navy); background: transparent; }
 
-    .call-card { position: relative; border: 1px solid #dfe4ea; border-radius: 24px; background: white; box-shadow: var(--shadow-lg); }
-    .call-card::after { content: ""; position: absolute; z-index: -1; right: -34px; bottom: -34px; width: 74%; height: 70%; border-radius: 30px; background: #edf1f6; }
-    .call-topbar { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 16px 20px; }
-    .window-dots { display: flex; gap: 6px; }
-    .window-dots i { width: 7px; height: 7px; border-radius: 50%; background: #cfd5dd; }
-    .live-label { display: inline-flex; align-items: center; gap: 7px; color: #667286; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-    .live-label i { width: 7px; height: 7px; border-radius: 50%; background: #3aa96f; box-shadow: 0 0 0 4px #e8f6ee; animation: livePulse 2s ease infinite; }
-    .call-main { padding: 25px 24px 22px; }
-    .caller { display: flex; align-items: center; gap: 13px; }
-    .caller-icon { display: grid; width: 43px; height: 43px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--navy); color: white; }
-    .caller-copy strong { display: block; color: var(--navy); font-size: 14px; }
-    .caller-copy span { color: #7a8596; font-size: 11px; }
-    .caller-status { margin-left: auto; border: 1px solid #d9eee2; border-radius: 999px; background: #f2fbf6; padding: 5px 9px; color: var(--green); font-size: 10px; font-weight: 700; }
-    .wave { display: flex; height: 38px; align-items: center; justify-content: center; gap: 3px; margin: 19px 0 20px; overflow: hidden; }
-    .wave i { width: 3px; height: 10px; border-radius: 4px; background: #2e67dc; animation: wave 1.2s ease-in-out infinite; }
-    .wave i:nth-child(3n) { animation-delay: .12s; }
-    .wave i:nth-child(4n) { animation-delay: .25s; }
-    .wave i:nth-child(5n) { animation-delay: .38s; }
-    .transcript { border: 1px solid #e5e8ed; border-radius: 14px; background: #fafbfc; padding: 14px; }
-    .line { display: flex; gap: 10px; color: #536075; font-size: 11px; line-height: 1.55; }
-    .line + .line { margin-top: 11px; }
-    .speaker { min-width: 42px; color: #8790a0; font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-    .speaker.ai { color: var(--blue); }
-    .call-result { display: flex; align-items: center; gap: 10px; margin-top: 15px; border-radius: 11px; background: var(--soft-green); padding: 11px 12px; color: #276646; font-size: 11px; font-weight: 700; }
-    .call-result svg { width: 16px; height: 16px; }
+    .hero-visual { position: relative; width: 100%; max-width: 610px; justify-self: end; }
+    .hero-visual::before { content: ""; position: absolute; z-index: -1; top: -105px; right: -35px; width: 720px; height: 710px; transform: rotate(-10deg); border-radius: 50% 44% 45% 53%; background: linear-gradient(145deg, #eef3fa 4%, #dfe8f5 100%); opacity: .96; }
+    .activity-card { overflow: hidden; border: 1px solid #d9dee7; border-radius: 23px; background: rgba(255,255,255,.96); box-shadow: 0 20px 40px rgba(16,43,84,.12), 0 2px 6px rgba(16,43,84,.06); }
+    .activity-head { display: flex; min-height: 78px; align-items: center; justify-content: space-between; padding: 0 31px; }
+    .activity-head h2 { margin: 0; color: var(--navy); font-family: Inter, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -.025em; }
+    .activity-live { display: inline-flex; align-items: center; gap: 9px; color: var(--blue); font-size: 17px; font-weight: 500; }
+    .activity-live i { width: 9px; height: 9px; border-radius: 50%; background: var(--blue); animation: livePulse 2s ease infinite; }
+    .activity-list { display: grid; gap: 14px; margin: 0; padding: 0 30px 18px; list-style: none; }
+    .activity-item { display: grid; min-height: 128px; grid-template-columns: 74px minmax(0,1fr) auto; align-items: center; gap: 20px; border: 1px solid #dce1e8; border-radius: 11px; padding: 20px 27px 20px 19px; background: rgba(255,255,255,.76); }
+    .activity-icon { display: grid; width: 72px; height: 72px; place-items: center; border-radius: 50%; }
+    .activity-icon svg { width: 34px; height: 34px; }
+    .activity-icon.green { background: #e8f5e6; color: #2c9458; }
+    .activity-icon.blue { background: #edf4ff; color: #2d66dd; }
+    .activity-icon.indigo { background: #edf0fb; color: #253d91; }
+    .activity-copy strong { display: block; margin-bottom: 6px; color: var(--navy); font-size: 18px; letter-spacing: -.03em; }
+    .activity-copy span { display: block; color: #687387; font-size: 16px; line-height: 1.42; }
+    .activity-meta { display: grid; justify-items: end; gap: 11px; white-space: nowrap; color: var(--blue); font-size: 14px; }
+    .activity-meta.green { color: #249256; }
+    .activity-status { border-radius: 999px; background: #edf4ff; padding: 7px 13px; font-size: 13px; font-weight: 600; }
+    .activity-meta.green .activity-status { background: #eaf5e9; }
+    .activity-foot { display: flex; min-height: 70px; align-items: center; justify-content: center; gap: 10px; border-top: 1px solid var(--line); color: var(--blue); font-size: 16px; font-weight: 500; }
+    .activity-foot svg { width: 17px; height: 17px; }
 
     .trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.55); }
     .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -300,15 +298,18 @@
 
     .reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    @keyframes wave { 0%,100% { height: 6px; opacity: .35; } 50% { height: 28px; opacity: 1; } }
     @keyframes livePulse { 50% { opacity: .48; } }
 
-    @media (max-width: 920px) {
+    @media (max-width: 1100px) {
       .nav-links, .nav-actions { display: none; }
       .menu-toggle { display: inline-flex; }
-      .hero-grid { grid-template-columns: 1fr; gap: 64px; }
+      .nav { height: 82px; }
+      .brand-mark { width: 52px; height: 52px; }
+      .brand-name { font-size: 23px; }
+      .hero { min-height: auto; padding-top: 76px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 74px; }
       .hero-copy { max-width: 720px; }
-      .hero-visual { width: min(570px, 100%); }
+      .hero-visual { width: min(610px, 100%); justify-self: start; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
       .audience-layout, .contact-layout { grid-template-columns: 1fr; gap: 46px; }
       .pricing-box { grid-template-columns: 1fr; }
@@ -317,13 +318,31 @@
 
     @media (max-width: 650px) {
       .wrap { width: min(100% - 28px, 1180px); }
+      .top-shell { width: calc(100% - 28px); }
       .section-pad { padding: 78px 0; }
-      .hero { padding: 70px 0 78px; }
-      .hero h1 { font-size: clamp(43px, 13vw, 60px); }
+      .nav { height: 74px; }
+      .brand { gap: 10px; }
+      .brand-mark { width: 44px; height: 44px; }
+      .brand-name { font-size: 20px; }
+      .hero { padding: 60px 0 78px; }
+      .hero-copy { padding-top: 0; }
+      .hero .eyebrow { margin-bottom: 20px; font-size: 13px; }
+      .hero h1 { font-size: clamp(41px, 12vw, 52px); line-height: 1.04; }
+      .hero-copy > p:not(.eyebrow) { font-size: 17px; }
       .hero-grid { gap: 50px; }
       .hero-actions .btn { width: 100%; }
-      .call-main { padding: 20px 17px; }
-      .caller-status { display: none; }
+      .hero-visual::before { top: -45px; right: -110px; width: 520px; height: 520px; }
+      .activity-head { min-height: 65px; padding: 0 18px; }
+      .activity-head h2 { font-size: 16px; }
+      .activity-live { font-size: 14px; }
+      .activity-list { gap: 10px; padding: 0 12px 12px; }
+      .activity-item { min-height: 100px; grid-template-columns: 48px minmax(0,1fr); gap: 12px; padding: 14px 12px; }
+      .activity-icon { width: 48px; height: 48px; }
+      .activity-icon svg { width: 24px; height: 24px; }
+      .activity-copy strong { font-size: 14px; }
+      .activity-copy span { font-size: 12px; }
+      .activity-meta { display: none; }
+      .activity-foot { min-height: 58px; font-size: 14px; }
       .trust-grid { grid-template-columns: repeat(2, 1fr); }
       .trust-item:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
       .trust-item:nth-child(4) { border-top: 1px solid var(--line); }
@@ -348,79 +367,68 @@
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav wrap" aria-label="Primary navigation">
+    <nav class="nav top-shell" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="Front Caller home">
         <img class="brand-mark" src="/logo-mark.svg" alt="" width="36" height="36">
         <span class="brand-name">Front Caller</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
         <li><a href="#how">How it works</a></li>
-        <li><a href="#industries">Industries</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a class="nav-login" href="tel:+14389007142">Call&nbsp;demo</a>
-        <a class="btn btn-primary" href="#contact">Get started</a>
+        <a class="btn nav-demo" href="#contact">Book a Demo</a>
       </div>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
         <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
       </button>
     </nav>
     <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-      <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <a href="#industries">Industries</a>
+      <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
-      <a class="btn btn-primary" href="#contact">Get started</a>
+      <a class="btn btn-secondary" href="#contact">Book a Demo</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="top">
-      <div class="hero-grid wrap">
+      <div class="hero-grid top-shell">
         <div class="hero-copy reveal">
-          <p class="eyebrow">AI receptionist for service businesses</p>
-          <h1>Every call answered.<span>Every opportunity captured.</span></h1>
-          <p>Front Caller is a customizable AI receptionist that answers your business calls 24/7, books appointments, handles common questions, captures leads, and transfers priority callers—so your team can stay focused.</p>
+          <p class="eyebrow">AI receptionist for modern businesses</p>
+          <h1>Every call answered.<span>Every opportunity<br>captured.</span></h1>
+          <p>A customized AI receptionist that answers questions, books appointments and connects customers—24/7.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="tel:+14389007142">
-              <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
-              Call&nbsp;the&nbsp;demo
-            </a>
-            <a class="btn btn-secondary" href="#contact">Book a conversation</a>
+            <a class="btn btn-primary" href="tel:+14389007142">Call&nbsp;the&nbsp;Demo</a>
+            <a class="btn btn-secondary" href="#how">See How It Works</a>
           </div>
-          <ul class="micro-proof" aria-label="Key benefits">
-            <li><i class="check-dot">✓</i> Available 24/7</li>
-            <li><i class="check-dot">✓</i> Built around your business</li>
-            <li><i class="check-dot">✓</i> Human handoff when needed</li>
-          </ul>
         </div>
 
-        <div class="hero-visual reveal" role="img" aria-label="Example of Front Caller handling an incoming call">
-          <div class="call-card">
-            <div class="call-topbar">
-              <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="live-label"><i></i> Live call</span>
-            </div>
-            <div class="call-main">
-              <div class="caller">
-                <span class="caller-icon"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg></span>
-                <span class="caller-copy"><strong>Incoming call</strong><span>Answered by Front Caller</span></span>
-                <span class="caller-status">Speaking</span>
-              </div>
-              <div class="wave" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-              <div class="transcript">
-                <div class="line"><span class="speaker">Caller</span><span>Hi, do you have any openings next Tuesday afternoon?</span></div>
-                <div class="line"><span class="speaker ai">Front Caller</span><span>Yes—there are two times available. Which one works better for you?</span></div>
-              </div>
-              <div class="call-result"><svg aria-hidden="true"><use href="#icon-check"></use></svg> Appointment captured and added to the schedule</div>
-            </div>
-          </div>
+        <div class="hero-visual reveal">
+          <aside class="activity-card" aria-label="Example incoming call activity">
+            <div class="activity-head"><h2>Incoming call activity</h2><span class="activity-live"><i></i>Live</span></div>
+            <ul class="activity-list">
+              <li class="activity-item">
+                <span class="activity-icon green"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg></span>
+                <span class="activity-copy"><strong>Appointment booked</strong><span>Design consultation for tomorrow at 10:00 AM.</span></span>
+                <span class="activity-meta green"><span>2 min ago</span><span class="activity-status">Completed</span></span>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon blue"><svg class="icon" aria-hidden="true"><use href="#icon-chat"></use></svg></span>
+                <span class="activity-copy"><strong>Question answered</strong><span>Provided pricing and availability details.</span></span>
+                <span class="activity-meta"><span>5 min ago</span><span class="activity-status">Completed</span></span>
+              </li>
+              <li class="activity-item">
+                <span class="activity-icon indigo"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></span>
+                <span class="activity-copy"><strong>Call transferred</strong><span>Connected to Sales team for follow-up.</span></span>
+                <span class="activity-meta"><span>7 min ago</span><span class="activity-status">Completed</span></span>
+              </li>
+            </ul>
+            <a class="activity-foot" href="#features">View all activity <svg aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+          </aside>
         </div>
       </div>
     </section>
