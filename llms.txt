@@ -2,7 +2,7 @@
 
 > Front Caller is a customizable AI receptionist for service businesses.
 
-Canonical website: https://frontcaller.com/
+Canonical website: https://www.frontcaller.com/
 
 ## What Front Caller does
 
@@ -21,4 +21,4 @@ Front Caller is designed for service businesses where phone calls drive appointm
 
 - Phone: +1 438 900 7142
 - Email: hello@frontcaller.com
-- Website: https://frontcaller.com/
+- Website: https://www.frontcaller.com/
