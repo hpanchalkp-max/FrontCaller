@@ -235,12 +235,37 @@
     .feature-card h3 { margin: 27px 0 10px; color: var(--navy); font-size: 18px; letter-spacing: -.025em; }
     .feature-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
 
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 52px; max-width: 1000px; margin: 58px auto 0; }
-    .how-step { position: relative; text-align: center; }
-    .how-step:not(:last-child)::after { content: ""; position: absolute; top: 31px; left: calc(50% + 46px); width: calc(100% - 92px); border-top: 1px dashed #c9d1dc; }
-    .step-num { display: grid; width: 64px; height: 64px; place-items: center; margin: auto; border: 1px solid #ced8e6; border-radius: 50%; background: white; color: var(--blue); font-family: Manrope, sans-serif; font-weight: 800; box-shadow: var(--shadow-sm); }
-    .how-step h3 { margin: 22px 0 9px; color: var(--navy); font-size: 17px; }
-    .how-step p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .journey-grid { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 54px 0 0; padding: 0; list-style: none; }
+    .journey-grid::before { content: ""; position: absolute; z-index: 0; top: 61px; right: 11%; left: 11%; height: 2px; background: linear-gradient(90deg, #9fc0ff, var(--blue), #9fc0ff); }
+    .journey-step { position: relative; z-index: 1; min-height: 214px; border: 1px solid #d7e1ef; border-radius: 18px; background: rgba(255,255,255,.96); padding: 24px 20px 22px; text-align: left; box-shadow: 0 10px 28px rgba(16,43,84,.07); }
+    .journey-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .journey-icon { display: grid; width: 72px; height: 72px; place-items: center; border: 8px solid #f6f7f8; border-radius: 22px; background: linear-gradient(145deg, #edf4ff, #dfeaff); color: var(--blue); box-shadow: inset 0 0 0 1px #d7e5fa; }
+    .journey-icon svg { width: 29px; height: 29px; }
+    .journey-num { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-family: Manrope, sans-serif; font-size: 12px; font-weight: 800; box-shadow: 0 6px 14px rgba(45,102,221,.24); }
+    .journey-step h3 { margin: 23px 0 8px; color: var(--navy); font-size: 17px; letter-spacing: -.025em; }
+    .journey-step p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.58; }
+    .outcome-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px 24px; margin: 24px 0 0; color: #526075; font-size: 13px; font-weight: 600; }
+    .outcome-strip span { display: inline-flex; align-items: center; gap: 8px; }
+    .outcome-strip span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+
+    .custom-panel { position: relative; overflow: hidden; margin-top: 52px; border: 1px solid #bfd0e8; border-radius: 26px; background: linear-gradient(145deg, #fafdff 0%, #eef4fc 100%); padding: 34px; box-shadow: 0 22px 50px rgba(16,43,84,.10); }
+    .custom-panel::after { content: ""; position: absolute; top: -100px; right: -90px; width: 260px; height: 260px; border-radius: 50%; background: rgba(45,102,221,.08); pointer-events: none; }
+    .custom-heading { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(260px,.78fr) 1.8fr; align-items: end; gap: 42px; }
+    .custom-heading h3 { max-width: 390px; margin: 0; color: var(--navy); font-size: clamp(26px,3vw,36px); line-height: 1.12; letter-spacing: -.04em; }
+    .custom-heading p { max-width: 650px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .location-label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--blue); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .location-label::before { content: ""; width: 22px; height: 2px; background: var(--blue); }
+    .location-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 28px; }
+    .location-card { border: 1px solid #d5dfec; border-top: 3px solid var(--blue); border-radius: 15px; background: white; padding: 19px; box-shadow: var(--shadow-sm); }
+    .location-card:nth-child(2) { border-top-color: #25a790; }
+    .location-card:nth-child(3) { border-top-color: #f39a3d; }
+    .location-card h4 { margin: 0 0 15px; color: var(--navy); font-family: Manrope, sans-serif; font-size: 15px; }
+    .location-rules { display: grid; gap: 9px; margin: 0; }
+    .location-rules div { display: grid; grid-template-columns: 83px minmax(0,1fr); gap: 8px; font-size: 11px; line-height: 1.45; }
+    .location-rules dt { color: var(--muted); font-weight: 600; }
+    .location-rules dd { margin: 0; color: var(--ink); font-weight: 600; }
+    .how-cta { display: flex; justify-content: center; margin-top: 30px; }
+    .how-cta .btn { min-width: 230px; min-height: 54px; font-size: 16px; }
 
     .audience-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: 78px; }
     .audience-copy h2 { margin-bottom: 18px; color: var(--navy); font-size: clamp(34px, 4vw, 50px); line-height: 1.08; letter-spacing: -.045em; }
@@ -314,6 +339,9 @@
       .hero-copy { max-width: 720px; }
       .hero-visual { width: min(610px, 100%); justify-self: start; }
       .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .journey-grid { grid-template-columns: repeat(2,1fr); }
+      .journey-grid::before { display: none; }
+      .custom-heading { grid-template-columns: 1fr; align-items: start; gap: 14px; }
       .audience-layout, .contact-layout { grid-template-columns: 1fr; gap: 46px; }
       .pricing-box { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 20px; }
@@ -351,8 +379,22 @@
       .trust-item:nth-child(4) { border-top: 1px solid var(--line); }
       .feature-grid { grid-template-columns: 1fr; }
       .feature-card { min-height: auto; }
-      .how-grid { grid-template-columns: 1fr; gap: 34px; }
-      .how-step:not(:last-child)::after { display: none; }
+      .journey-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 38px; padding-left: 32px; }
+      .journey-grid::before { display: block; top: 29px; bottom: 29px; left: 14px; width: 2px; height: auto; background: linear-gradient(#9fc0ff,var(--blue),#9fc0ff); }
+      .journey-step { min-height: 0; padding: 18px; }
+      .journey-top { justify-content: flex-start; }
+      .journey-icon { width: 54px; height: 54px; border-width: 5px; border-radius: 16px; }
+      .journey-icon svg { width: 23px; height: 23px; }
+      .journey-num { position: absolute; top: 28px; left: -32px; width: 28px; height: 28px; }
+      .journey-step h3 { margin: 15px 0 6px; }
+      .journey-step p { font-size: 12px; }
+      .outcome-strip { justify-content: flex-start; gap: 8px 18px; padding-left: 32px; }
+      .custom-panel { margin-top: 40px; padding: 26px 18px; }
+      .custom-heading h3 { font-size: 28px; }
+      .location-grid { display: flex; overflow-x: auto; gap: 12px; margin-right: -18px; padding: 2px 36px 12px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .location-grid::-webkit-scrollbar { display: none; }
+      .location-card { min-width: min(88%,320px); scroll-snap-align: start; }
+      .how-cta .btn { width: 100%; }
       .industry-grid, .form-grid { grid-template-columns: 1fr; }
       .form-grid .wide { grid-column: auto; }
       .integrations-top { display: block; }
@@ -500,14 +542,59 @@
       <div class="wrap">
         <div class="section-heading reveal">
           <p class="eyebrow">How it works</p>
-          <h2>From first ring to the right outcome.</h2>
-          <p>Your callers keep using the number they know. Front Caller handles the conversation according to your business rules.</p>
+          <h2>One call. Everything handled.</h2>
+          <p>Front Caller is customized around your business—and configured separately for each location.</p>
         </div>
-        <ol class="how-grid">
-          <li class="how-step reveal"><span class="step-num">01</span><h3>A customer calls</h3><p>The call routes from your existing business line to Front Caller.</p></li>
-          <li class="how-step reveal"><span class="step-num">02</span><h3>The assistant responds</h3><p>It understands the request and uses your approved business knowledge.</p></li>
-          <li class="how-step reveal"><span class="step-num">03</span><h3>The next action happens</h3><p>A booking, lead record, answer, or staff transfer is completed.</p></li>
+        <ol class="journey-grid" aria-label="How Front Caller handles a call">
+          <li class="journey-step reveal">
+            <div class="journey-top"><span class="journey-icon"><svg aria-hidden="true"><use href="#icon-phone"></use></svg></span><span class="journey-num">1</span></div>
+            <h3>Customer calls</h3>
+            <p>The call routes from your existing business number to Front Caller.</p>
+          </li>
+          <li class="journey-step reveal">
+            <div class="journey-top"><span class="journey-icon"><svg aria-hidden="true"><use href="#icon-chat"></use></svg></span><span class="journey-num">2</span></div>
+            <h3>Front Caller responds</h3>
+            <p>It speaks naturally and uses the business information you approve.</p>
+          </li>
+          <li class="journey-step reveal">
+            <div class="journey-top"><span class="journey-icon"><svg aria-hidden="true"><use href="#icon-calendar"></use></svg></span><span class="journey-num">3</span></div>
+            <h3>Request completed</h3>
+            <p>A question, booking, lead record, or priority transfer is handled.</p>
+          </li>
+          <li class="journey-step reveal">
+            <div class="journey-top"><span class="journey-icon"><svg aria-hidden="true"><use href="#icon-dashboard"></use></svg></span><span class="journey-num">4</span></div>
+            <h3>Your team is updated</h3>
+            <p>Your staff receives the outcome and customer details needed for follow-up.</p>
+          </li>
         </ol>
+        <div class="outcome-strip reveal" aria-label="Front Caller outcomes">
+          <span>Answers questions</span><span>Books appointments</span><span>Captures leads</span><span>Transfers important calls</span>
+        </div>
+
+        <article class="custom-panel reveal">
+          <div class="custom-heading">
+            <div>
+              <span class="location-label">One business, every location</span>
+              <h3>Built around the way your business works.</h3>
+            </div>
+            <p>Every business receives its own call flow. If you operate multiple locations, each one can have separate hours, services, booking rules, languages, and call-transfer preferences.</p>
+          </div>
+          <div class="location-grid" aria-label="Example customized location settings">
+            <section class="location-card">
+              <h4>Downtown location</h4>
+              <dl class="location-rules"><div><dt>Hours</dt><dd>Mon–Fri, 8–7</dd></div><div><dt>Services</dt><dd>Location-specific</dd></div><div><dt>Languages</dt><dd>English, French</dd></div><div><dt>Transfers</dt><dd>Urgent → Front desk</dd></div></dl>
+            </section>
+            <section class="location-card">
+              <h4>North location</h4>
+              <dl class="location-rules"><div><dt>Hours</dt><dd>Mon–Sat, 9–6</dd></div><div><dt>Services</dt><dd>Location-specific</dd></div><div><dt>Languages</dt><dd>English</dd></div><div><dt>Transfers</dt><dd>Bookings → Team</dd></div></dl>
+            </section>
+            <section class="location-card">
+              <h4>West location</h4>
+              <dl class="location-rules"><div><dt>Hours</dt><dd>Daily, 9–5</dd></div><div><dt>Services</dt><dd>Location-specific</dd></div><div><dt>Languages</dt><dd>English, Spanish</dd></div><div><dt>Transfers</dt><dd>Sales → Manager</dd></div></dl>
+            </section>
+          </div>
+        </article>
+        <div class="how-cta reveal"><a class="btn btn-primary" href="tel:+14389007142"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>Call the Live Demo</a></div>
       </div>
     </section>
 
